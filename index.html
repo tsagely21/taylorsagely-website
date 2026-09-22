@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taylor Sagely | Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0b0f19;
+      --card-bg: rgba(18, 24, 39, 0.75);
+      --card-hover: rgba(28, 38, 62, 0.9);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(99, 102, 241, 0.35);
+      --accent-primary: #6366f1;
+      --accent-secondary: #06b6d4;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1.25rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glows */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    body::before {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #6366f1, #06b6d4);
+      top: -10%;
+      left: 10%;
+    }
+
+    body::after {
+      width: 460px;
+      height: 460px;
+      background: radial-gradient(circle, #8b5cf6, #ec4899);
+      bottom: -10%;
+      right: 10%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 840px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Card styling */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.5);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-focus);
+    }
+
+    /* Hero section */
+    .hero-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 9999px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.35);
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(to right, #ffffff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.35rem;
+    }
+
+    .role-badge {
+      font-size: 1.05rem;
+      font-weight: 600;
+      background: linear-gradient(to right, #818cf8, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .bio {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border-color);
+      width: 100%;
+      padding-top: 1.25rem;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Stats bar */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .stat-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(18px);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .stat-box:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+    }
+
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .stat-desc {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+
+    /* Section styling */
+    .section-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-heading::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 18px;
+      background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+      border-radius: 4px;
+    }
+
+    /* Skills */
+    .skill-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .category-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.825rem;
+      font-weight: 500;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .tag:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Project items */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .project-entry {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .project-entry:hover {
+      background: var(--card-hover);
+      border-color: rgba(99, 102, 241, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .project-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .project-description {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Timeline */
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-primary), rgba(99, 102, 241, 0.05));
+    }
+
+    .timeline-card {
+      position: relative;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: -1.5rem;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg-main);
+      border: 3px solid var(--accent-primary);
+    }
+
+    .timeline-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #ffffff;
+    }
+
+    .timeline-period {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .timeline-org {
+      font-size: 0.85rem;
+      color: #818cf8;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      padding: 1.5rem 0 0.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-bar {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 640px) {
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .hero-header h1 {
+        font-size: 1.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+
+    <!-- Hero Card -->
+    <section class="card hero-card">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Available for Projects & Collaborations
+      </div>
+
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          TS
+        </div>
+      </div>
+
+      <div class="hero-header">
+        <h1>Taylor Sagely</h1>
+        <p class="role-badge">Software Engineer & Technology Builder</p>
+      </div>
+
+      <p class="bio">
+        Passionate about crafting elegant digital products, resilient software systems, and modern web experiences.
+        Focused on continuous learning, clean architecture, and solving meaningful problems through code.
+      </p>
+
+      <div class="meta-pills">
+        <div class="meta-pill">📍 Based in the US</div>
+        <div class="meta-pill">⚡ Focused on Performance & Clean Code</div>
+        <div class="meta-pill">💼 Open to Opportunities</div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="mailto:taylor.sagely@example.com" class="btn btn-primary">
+          ✉️ Get in Touch
+        </a>
+        <a href="#projects" class="btn btn-secondary">
+          📁 View Projects
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats Row -->
+    <section class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">25+</div>
+        <div class="stat-desc">Projects Built</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">100%</div>
+        <div class="stat-desc">Commitment to Quality</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">5+</div>
+        <div class="stat-desc">Years in Tech</div>
+      </div>
+    </section>
+
+    <!-- Core Skills -->
+    <section class="card">
+      <h2 class="section-heading">Core Skills & Tools</h2>
+      <div class="skill-categories">
+        <div>
+          <div class="category-label">Development & Engineering</div>
+          <div class="tag-cloud">
+            <span class="tag">HTML5 & Web Standards</span>
+            <span class="tag">Modern CSS</span>
+            <span class="tag">JavaScript & TypeScript</span>
+            <span class="tag">Git & Version Control</span>
+            <span class="tag">API Integration</span>
+            <span class="tag">System Design</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="category-label">Workflow & Architecture</div>
+          <div class="tag-cloud">
+            <span class="tag">Agile Development</span>
+            <span class="tag">Responsive UI/UX</span>
+            <span class="tag">Performance Tuning</span>
+            <span class="tag">Code Review</span>
+            <span class="tag">Problem Solving</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card">
+      <h2 class="section-heading">Featured Projects</h2>
+      <div class="project-list">
+        <div class="project-entry">
+          <div class="project-top">
+            <h3 class="project-name">Collaborative Web Platform</h3>
+            <span class="project-pill">Active</span>
+          </div>
+          <p class="project-description">
+            A fast, responsive web platform engineered for team collaboration, streamlined workflows, and real-time data synchronization.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Git</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-top">
+            <h3 class="project-name">Personal Portfolio & Profile Hub</h3>
+            <span class="project-pill">Complete</span>
+          </div>
+          <p class="project-description">
+            A lightweight, zero-dependency profile website built entirely with raw HTML and modern CSS, emphasizing clean accessibility and fast load times.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">Semantic HTML</span>
+            <span class="tag">Responsive Design</span>
+            <span class="tag">Zero JS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="card">
+      <h2 class="section-heading">Experience & Journey</h2>
+      <div class="timeline-container">
+        <div class="timeline-card">
+          <div class="timeline-marker"></div>
+          <div class="timeline-heading">
+            <span class="timeline-title">Software Developer</span>
+            <span class="timeline-period">Present</span>
+          </div>
+          <div class="timeline-org">Engineering & Technology</div>
+          <p class="timeline-text">
+            Building intuitive user interfaces, improving system reliability, and collaborating on high-impact software solutions.
+          </p>
+        </div>
+
+        <div class="timeline-card">
+          <div class="timeline-marker"></div>
+          <div class="timeline-heading">
+            <span class="timeline-title">Technical Projects & Development</span>
+            <span class="timeline-period">Previous</span>
+          </div>
+          <div class="timeline-org">Self-Directed & Team Initiatives</div>
+          <p class="timeline-text">
+            Designed and deployed modern web tools, streamlined developer workflows, and implemented best practices in version control and testing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-bar">
+        <a href="https://github.com" class="social-btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com" class="social-btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:taylor.sagely@example.com" class="social-btn">Email</a>
+      </div>
+      <p>© 2026 Taylor Sagely. Built with pure HTML & CSS — no JavaScript.</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
