@@ -17,8 +17,9 @@
       --card-border: rgba(255, 255, 255, 0.08);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --accent: #6366f1;
-      --accent-hover: #4f46e5;
+      --accent: #461d7c;
+      --accent-hover: #59249d;
+      --accent-glow: rgba(70, 29, 124, 0.45);
     }
 
     * {
@@ -47,7 +48,7 @@
       width: 420px;
       height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.16), transparent 70%);
+      background: radial-gradient(circle, rgba(70, 29, 124, 0.3), transparent 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -185,7 +186,7 @@
 
     .link-btn.primary:hover {
       background: var(--accent-hover);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+      box-shadow: 0 8px 22px var(--accent-glow);
     }
 
     .link-btn svg {
@@ -214,19 +215,19 @@
     </div>
 
     <nav class="links">
-      <a href="projects.html" class="link-btn primary">
-        <svg viewBox="0 0 24 24">
-          <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z" />
-        </svg>
-        View Projects
-      </a>
-
-      <a href="resume.html" class="link-btn">
+      <a href="resume.html" class="link-btn primary">
         <svg viewBox="0 0 24 24">
           <path
             d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
         </svg>
         View Resume
+      </a>
+
+      <a href="projects.html" class="link-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z" />
+        </svg>
+        View Projects
       </a>
 
       <a href="https://github.com/tsagely21" class="link-btn" target="_blank" rel="noopener">
